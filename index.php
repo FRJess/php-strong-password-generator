@@ -31,11 +31,11 @@ if (isset($_GET['lunghezza'])) {
 
   <main>
     <div class="container">
-      <div class="bg-secondary text-white text-center p-5 my-3 rounded banner">
+      <div class="text-white text-center p-5 my-3">
         <?php if (empty($_GET['lunghezza'])) : ?>
           <h6 class="text-warning"><strong>Inserisci un valore!</strong></h6>
         <?php else : ?>
-          <h6 class="text-dark">La tua password: <span class="text-white"><?php echo $password ?></span></h6>
+          <h6 class="text-white">La tua password è: <span class="text-danger"><?php echo $password ?></span></h6>
         <?php endif ?>
       </div>
 
