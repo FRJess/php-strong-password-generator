@@ -10,8 +10,8 @@ for ($i = 0; $i < $passwordLength; $i++) {
   $password .= substr($passwordCharacters, $random, 1);
 }
 
-var_dump($passwordLength);
-var_dump($password);
+// var_dump($passwordLength);
+// var_dump($password);
 
 
 ?>
@@ -33,12 +33,18 @@ var_dump($password);
 
 </head>
 
-<body class="bg-danger">
+<body class="bg-dark">
   <header>
     <h1 class="text-center text-white p-5 d-flex justify-content-around m-0">Strong Password Generator</h1>
   </header>
 
   <main>
+    <div class="container">
+      <div class="text-white text-center p-3 my-3 rounded banner">
+        <h5 class="text-white">La tua password è: <span class="text-danger"><?php echo $password ?></span></h5>
+      </div>
+
+    </div>
 
     <div class="text-white p-5 d-flex justify-content-around">
 
