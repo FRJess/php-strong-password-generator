@@ -1,6 +1,8 @@
 <?php
 
 $passwordLength = $_GET['lunghezza'] ?? '';
+$passwordCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!?&%$<>^+-*/()[]{}@#_=";
+$password = '';
 
 var_dump($passwordLength);
 
