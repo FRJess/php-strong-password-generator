@@ -14,7 +14,9 @@
 </head>
 
 <body>
-
+  <header class="m-3">
+    <h1 class="text-center text-primary bg-light p-3">Strong Password Generator</h1>
+  </header>
 </body>
 
 </html>
