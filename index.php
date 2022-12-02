@@ -1,5 +1,8 @@
 <?php
 
+$passwordLength = $_GET['lunghezza'] ?? '';
+
+var_dump($passwordLength);
 
 
 ?>
@@ -21,7 +24,7 @@
 
 </head>
 
-<body class="bg-dark">
+<body class="bg-danger">
   <header>
     <h1 class="text-center text-white p-5 d-flex justify-content-around m-0">Strong Password Generator</h1>
   </header>
@@ -31,12 +34,12 @@
     <div class="text-white p-5 d-flex justify-content-around">
 
 
-      <form action="index.php" method="GET">
+      <form method="GET">
 
         <div class="row mb-3">
           <label for="number" class="col-sm-6 col-form-label">Lunghezza password:</label>
           <div class="col-sm-6">
-            <input type="number" class="form-control" name="number" id="number" aria-describedby="numberHelpId" placeholder="numero di caratteri">
+            <input type="number" class="form-control" name="lunghezza" id="" aria-describedby="numberHelpId" placeholder="numero di caratteri">
           </div>
         </div>
 
