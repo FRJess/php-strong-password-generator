@@ -1,22 +1,13 @@
 <?php
 
-$passwordLength = $_GET['lunghezza'] ?? '';
-$passwordCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!?&%$<>^+-*/()[]{}@#_=";
-$password = '';
+require __DIR__ . '/functions.php';
 
-
-for ($i = 0; $i < $passwordLength; $i++) {
-  $random = rand(0, strlen($passwordCharacters) - 1);
-  $password .= substr($passwordCharacters, $random, 1);
+if (isset($_GET['lunghezza'])) {
+  $password = generatePassword($_GET['lunghezza']);
+} else {
 }
 
-// var_dump($passwordLength);
-// var_dump($password);
-
-
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,8 +31,12 @@ for ($i = 0; $i < $passwordLength; $i++) {
 
   <main>
     <div class="container">
-      <div class="text-white text-center p-3 my-3 rounded banner">
-        <h5 class="text-white">La tua password è: <span class="text-danger"><?php echo $password ?></span></h5>
+      <div class="bg-secondary text-white text-center p-5 my-3 rounded banner">
+        <?php if (empty($_GET['lunghezza'])) : ?>
+          <h6 class="text-warning"><strong>Inserisci un valore!</strong></h6>
+        <?php else : ?>
+          <h6 class="text-dark">La tua password: <span class="text-white"><?php echo $password ?></span></h6>
+        <?php endif ?>
       </div>
 
     </div>
