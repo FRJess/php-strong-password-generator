@@ -23,7 +23,7 @@ require_once __DIR__ . '/functions.php';
 
 <body>
     <h1 class="py-5">STRONG PASSWORD GENERATOR</h1>
-    <div class="container cp-container flex-column py-5">
+    <div class="container flex-column py-5">
         <div class="row d-flex flex-column justify-content-center">
             <form action="index.php" method="GET">
 

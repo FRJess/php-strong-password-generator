@@ -23,7 +23,7 @@ session_start();
 
 <body>
 
-    <div class="container cp-container">
+    <div class="container">
         <div class="row py-4">
             <div class="col text-center">
                 <h2 class="py-3 text-danger">La tua password è: </h2>
