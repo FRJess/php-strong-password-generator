@@ -1,86 +1,90 @@
 <?php
 
-require __DIR__ . '/functions.php';
-
-if (isset($_GET['lunghezza'])) {
-  $password = generatePassword($_GET['lunghezza']);
-} else {
-}
+require_once __DIR__ . '/functions.php';
 
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- BOOTSTRAP -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- bootstrap -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css' integrity='sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA==' crossorigin='anonymous' />
 
-  <title>Password generator</title>
-
+    <link rel="stylesheet" href="style.css">
+    <title>PW Generator</title>
 </head>
 
-<body class="bg-dark">
-  <header>
-    <h1 class="text-center text-white p-5 d-flex justify-content-around m-0">Strong Password Generator</h1>
-  </header>
+<body>
+    <h1 class="py-5">STRONG PASSWORD GENERATOR</h1>
+    <div class="container cp-container flex-column py-5">
+        <div class="row d-flex flex-column justify-content-center">
+            <form action="index.php" method="GET">
 
-  <main>
-    <div class="container">
-      <div class="text-white text-center p-5 my-3">
-        <?php if (empty($_GET['lunghezza'])) : ?>
-          <h6 class="text-warning"><strong>Inserisci un valore!</strong></h6>
-        <?php else : ?>
-          <h6 class="text-white">La tua password è: <span class="text-danger"><?php echo $password ?></span></h6>
-        <?php endif ?>
-      </div>
+                <div class="col">
 
-    </div>
+                    <label for="basic-url" class="form-label">Inserisci lunghezza caratteri della password generata.</label>
+                    <div class="input-group mb-3 w-50 m-auto">
+                        <input type="number" class="form-control text-center" id="basic-url" aria-describedby="basic-addon3" name="pw_length">
+                    </div>
+                </div>
 
-    <div class="text-white p-5 d-flex justify-content-around">
+                <div class="col d-flex justify-content-center">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="same_chars" id="flexRadioDefault1" value="0" checked>
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Caratteri uguali ammessi
+                        </label>
+                    </div>
+                    <div class="form-check mx-4">
+                        <input class="form-check-input" type="radio" name="same_chars" id="flexRadioDefault2" value="1">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            NO caratteri uguali
+                        </label>
+                    </div>
+                </div>
 
+                <div class="col d-flex my-3 flex-column">
+                    <p>Includi:</p>
+                    <div class="checkbox-form d-flex">
+                        <input type="checkbox" id="numbers" value="numbers" name="characters[]" checked>
+                        <label for="numbers" class="mx-3">Numeri</label>
+                    </div>
 
-      <form method="GET">
+                    <div class="checkbox-form d-flex">
+                        <input type="checkbox" id="letters" value="letters" name="characters[]" checked>
+                        <label for="numbers" class="mx-3">Lettere</label>
+                    </div>
 
-        <div class="row mb-3">
-          <label for="number" class="col-sm-6 col-form-label">Lunghezza password:</label>
-          <div class="col-sm-6">
-            <input type="number" class="form-control" name="lunghezza" id="" aria-describedby="numberHelpId" placeholder="numero di caratteri">
-          </div>
+                    <div class="checkbox-form d-flex">
+                        <input type="checkbox" id="specialchars" value="specialchars" name="characters[]" checked>
+                        <label for="numbers" class="mx-3">Caratteri speciali</label>
+                    </div>
+
+                </div>
+
+                <div class="col d-flex justify-content-center py-3">
+                    <button class="btn btn-info" type="submit">GENERA</button>
+                </div>
+
+            </form>
         </div>
 
-
-        <div class="buttons text-center mt-3">
-          <button type="submit" class="btn btn-light px-4">Invia</button>
-          <button type="reset" class="btn btn-secondary px-4">Annulla</button>
-        </div>
-
-      </form>
+        <!-- avviso se viene inserito un numero non valido -->
+        <?php if (!empty($pwlength)) : ?>
+            <div class="row py-4">
+                <div class="col">
+                    <h2>Inserire un numero di caratteri compreso tra 8 e 32</h2>
+                </div>
+            </div>
+        <?php endif; ?>
     </div>
-
-
-
-
-  </main>
 </body>
 
 </html>
-
-
-<!-- Descrizione
-Dobbiamo creare una pagina che permetta ai nostri utenti di utilizzare il nostro generatore di password (abbastanza) sicure.
-L’esercizio è suddiviso in varie milestone ed è molto importante svilupparle in modo ordinato.
-Milestone 1
-Creare un form che invii in GET la lunghezza della password. Una nostra funzione utilizzerà questo dato per generare una password casuale (composta da lettere, lettere maiuscole, numeri e simboli (!?&%$<>^+-*/()[]{}@#_=)) da restituire all’utente.
-Scriviamo tutto (logica e layout) in un unico file index.php
-Milestone 2
-Verificato il corretto funzionamento del nostro codice, spostiamo la logica in un file functions.php che includeremo poi nella pagina principale
-Milestone 3
-Invece di visualizzare la password nella index, effettuare un redirect ad una pagina dedicata che tramite $_SESSION recupererà la password da mostrare all’utente.
-Milestone 4 (BONUS)
-Gestire ulteriori parametri per la password: quali caratteri usare fra numeri, lettere e simboli. Possono essere scelti singolarmente (es. solo numeri) oppure possono essere combinati fra loro (es. numeri e simboli, oppure tutti e tre insieme).
-Dare all’utente anche la possibilità di permettere o meno la ripetizione di caratteri uguali. -->
